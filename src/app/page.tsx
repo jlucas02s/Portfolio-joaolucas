@@ -31,7 +31,7 @@ export default function Home() {
     handleScroll();
 
     const animate = () => {
-      const lerpFactor = 0.08;
+      const lerpFactor = 0.20;
       smoothedScrollY.current += (scrollY - smoothedScrollY.current) * lerpFactor;
       
       animationFrameId.current = requestAnimationFrame(animate);
@@ -60,19 +60,19 @@ export default function Home() {
     let scale = 0.95;
     let y = 20;
 
-    if (progress >= -0.5 && progress <= 1.5) {
+    if (progress >= -0.5 && progress <= 2.5) {
       if (progress < 0.25 && progress > -0.5) {
         opacity = (progress + 0.5) / 0.75;
-        scale = 1 - (0.25 - progress) * 0.1;
-        y = (0.25 - progress) * 40;
+        scale = 1 - (1.25 - progress) * .5;
+        y = (1.25 - progress) * 50;
       } else if (progress >= 0.25 && progress <= 0.75) {
         opacity = 1;
         scale = 1;
         y = 0;
       } else if (progress > 0.75 && progress <= 1.5) {
-        opacity = (1.5 - progress) / 0.75;
+        opacity = (0.5 - progress) / 0.75;
         scale = 1 - (progress - 0.75) * 0.1;
-        y = -(progress - 0.75) * 40;
+        y = -(progress - 0.50) * 40;
       }
     }
     

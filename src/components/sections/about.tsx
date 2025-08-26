@@ -10,7 +10,7 @@ export const About = () => {
         Sou um desenvolvedor apaixonado por tecnologia, sempre em busca de criar soluções inovadoras e experiências digitais incríveis.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <Card className="bg-card/50 backdrop-blur-sm border-primary/20">
+        <Card className="bg-card/50 backdrop-blur-sm border-primary/20 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:border-accent">
           <CardHeader>
             <CardTitle className="flex items-center justify-center gap-2">
               <Code className="text-accent" />
@@ -23,7 +23,7 @@ export const About = () => {
             </p>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 backdrop-blur-sm border-primary/20">
+        <Card className="bg-card/50 backdrop-blur-sm border-primary/20 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:border-accent">
           <CardHeader>
             <CardTitle className="flex items-center justify-center gap-2">
               <Rocket className="text-accent" />
@@ -36,7 +36,7 @@ export const About = () => {
             </p>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 backdrop-blur-sm border-primary/20">
+        <Card className="bg-card/50 backdrop-blur-sm border-primary/20 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:border-accent">
           <CardHeader>
             <CardTitle className="flex items-center justify-center gap-2">
               <BrainCircuit className="text-accent" />

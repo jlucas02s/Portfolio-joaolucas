@@ -63,7 +63,7 @@ export const SocialSpiral = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={social.name}
-                        className="absolute top-1/2 left-1/2 w-12 h-12 -m-6 rounded-full bg-primary/20 text-primary-foreground flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-primary hover:shadow-lg hover:scale-110"
+                        className="group absolute top-1/2 left-1/2 w-12 h-12 -m-6 rounded-full bg-primary/20 text-primary-foreground flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-primary hover:shadow-lg hover:scale-110"
                         style={{
                             transform: `translate(${x}px, ${y}px)`,
                         }}

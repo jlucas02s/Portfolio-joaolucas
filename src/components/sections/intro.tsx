@@ -18,14 +18,14 @@ export const Intro = () => {
             const x = (clientX / offsetWidth) - 0.5;
             const y = (clientY / offsetHeight) - 0.5;
 
-            const rotateX = -y * 30;
-            const rotateY = x * 30;
+            const rotateX = -y * 20;
+            const rotateY = x * 20;
 
             container.style.setProperty('--rotate-x', `${rotateX}deg`);
             container.style.setProperty('--rotate-y', `${rotateY}deg`);
 
-            const bgX = 50 + x * 20;
-            const bgY = 50 + y * 20;
+            const bgX = 50 + x * 10;
+            const bgY = 50 + y * 10;
             container.style.setProperty('--bg-x', `${bgX}%`);
             container.style.setProperty('--bg-y', `${bgY}%`);
         };
@@ -36,6 +36,8 @@ export const Intro = () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
     }, []);
+
+    const name = "João Lucas";
 
     if (!isClient) {
         return (
@@ -68,25 +70,29 @@ export const Intro = () => {
             }}></div>
             <h1 
                 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter uppercase transition-transform duration-300 ease-out"
-                style={{ transform: 'rotateX(var(--rotate-x)) rotateY(var(--rotate-y))' }}
+                style={{ transform: 'rotateX(var(--rotate-x)) rotateY(var(--rotate-y))', transformStyle: 'preserve-3d' }}
             >
                 <span 
-                    className="bg-clip-text text-transparent bg-gradient-to-br from-primary to-accent relative"
+                    className="bg-clip-text text-transparent bg-gradient-to-br from-primary to-accent relative flex"
                     style={{ textShadow: '0 2px 20px hsla(var(--primary)/0.5)' }}
                 >
-                    João Lucas
+                    {name.split('').map((char, i) => (
+                        <span key={i} className="inline-block transition-transform duration-200 ease-in-out hover:-translate-y-2">
+                            {char === ' ' ? '\u00A0' : char}
+                        </span>
+                    ))}
                      <span 
                         aria-hidden="true" 
                         className="absolute inset-0 bg-clip-text text-transparent bg-gradient-to-br from-primary to-accent opacity-30" 
                         style={{ transform: 'translateY(0.75em) scaleY(-1)', filter: 'blur(10px)' }}
                     >
-                        João Lucas
+                         {name}
                     </span>
                 </span>
             </h1>
             <p 
                 className="mt-4 text-xl md:text-2xl text-foreground/70 transition-transform duration-300 ease-out"
-                style={{ transform: 'rotateX(var(--rotate-x)) rotateY(var(--rotate-y))' }}
+                style={{ transform: 'rotateX(var(--rotate-x)) rotateY(var(--rotate-y))', transformStyle: 'preserve-3d' }}
             >
                 Desenvolvedor & Criativo Digital
             </p>

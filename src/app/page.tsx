@@ -9,7 +9,6 @@ import { Section } from '@/components/section';
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   
   const smoothedScrollY = useRef(0);
   const animationFrameId = useRef<number>();
@@ -22,12 +21,7 @@ export default function Home() {
       setScrollY(window.scrollY);
     };
 
-    const handleMouseMove = (event: MouseEvent) => {
-      setMousePos({ x: event.clientX, y: event.clientY });
-    };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('mousemove', handleMouseMove);
     handleScroll();
 
     const animate = () => {
@@ -41,7 +35,6 @@ export default function Home() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
@@ -83,26 +76,11 @@ export default function Home() {
     };
   };
 
-  const getParallaxStyle = (depth: number): React.CSSProperties => {
-    if (!isClient) {
-      return { willChange: 'transform' };
-    }
-    const moveX = (mousePos.x - window.innerWidth / 2) * depth;
-    const moveY = (mousePos.y - window.innerHeight / 2) * depth;
-    return {
-      transform: `translateX(${moveX}px) translateY(${moveY}px)`,
-      willChange: 'transform',
-    };
-  };
-
   return (
     <div className="bg-background">
       <div style={{ height: `${sceneHeight}px` }} />
-      <div 
-        className="fixed top-0 left-0 w-full h-screen overflow-hidden pointer-events-none"
-        style={getParallaxStyle(0.01)}
-      >
-        <div className="w-full h-full relative" style={getParallaxStyle(0.02)}>
+      <div className="fixed top-0 left-0 w-full h-screen overflow-hidden pointer-events-none">
+        <div className="w-full h-full relative">
             <Section style={getSectionStyle(0)}><Intro /></Section>
             <Section style={getSectionStyle(1)}><About /></Section>
             <Section style={getSectionStyle(2)}><Contact /></Section>

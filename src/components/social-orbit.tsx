@@ -62,15 +62,16 @@ const SocialCard = ({ link, style }: { link: typeof socialLinks[0], style: React
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                         data-ai-hint={link.dataAiHint}
                     />
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all" />
-                    <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="z-10"
-                    >
-                        <Button variant="default" size="lg">Visitar</Button>
-                    </a>
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                        <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="z-10"
+                        >
+                            <Button variant="default" size="lg">Visitar</Button>
+                        </a>
+                    </div>
                 </div>
                 <div className="mt-3 flex items-center gap-3">
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-primary">

@@ -51,9 +51,9 @@ const socialLinks = [
 const SocialCard = ({ link, style }: { link: typeof socialLinks[0], style: React.CSSProperties }) => {
     const Icon = link.icon;
     return (
-        <div style={style} className="group absolute top-1/2 left-1/2 w-80 h-[280px] -m-40 transition-all duration-300 ease-in-out">
-            <div className="relative w-full h-full rounded-2xl border border-primary/20 bg-card/50 p-4 transition-transform duration-300 ease-in-out group-hover:scale-110 shadow-lg">
-                <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-lg">
+        <div style={style} className="group absolute top-1/2 left-1/2 w-64 h-64 -m-32 transition-all duration-300 ease-in-out">
+            <div className="relative w-full h-full rounded-2xl border border-primary/20 bg-card/50 p-4 transition-transform duration-300 ease-in-out group-hover:scale-110 shadow-lg backdrop-blur-sm">
+                <div className="relative flex h-40 w-full items-center justify-center overflow-hidden rounded-lg">
                     <Image 
                         src={link.preview} 
                         alt={`Preview of ${link.name}`} 
@@ -72,13 +72,13 @@ const SocialCard = ({ link, style }: { link: typeof socialLinks[0], style: React
                         <Button variant="default" size="lg">Visitar</Button>
                     </a>
                 </div>
-                <div className="mt-4 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary">
-                        <Icon className="h-5 w-5" />
+                <div className="mt-3 flex items-center gap-3">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-primary">
+                        <Icon className="h-4 w-4" />
                     </div>
                     <div>
-                        <p className="font-semibold text-foreground">{link.name}</p>
-                        <p className="text-sm text-muted-foreground">{link.handle}</p>
+                        <p className="font-semibold text-sm text-foreground">{link.name}</p>
+                        <p className="text-xs text-muted-foreground">{link.handle}</p>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@ export const SocialOrbit = () => {
   if (!isClient) return null;
 
   const numIcons = socialLinks.length;
-  const radius = 400; 
+  const radius = 350; 
   const perspective = 1500;
 
   return (
@@ -131,13 +131,13 @@ export const SocialOrbit = () => {
           const currentAngle = angle + (index / numIcons) * 2 * Math.PI;
           const x = Math.cos(currentAngle) * radius;
           const z = Math.sin(currentAngle) * radius;
-          const y = Math.sin(currentAngle * 2) * 50; // Add some vertical movement
+          const y = Math.sin(currentAngle * 2) * 50;
           
           const scale = (z + radius) / (2 * radius) * 0.7 + 0.5;
           const opacity = (z + radius) / (2 * radius) * 0.8 + 0.2;
           
           const cardStyle = {
-            transform: `translateX(${x}px) translateY(${y}px) translateZ(${z}px) rotateY(${currentAngle + Math.PI/2}rad) scale(${scale})`,
+            transform: `translateX(${x}px) translateY(${y}px) translateZ(${z}px) rotateY(${-currentAngle}rad) rotateY(${Math.PI}rad) scale(${scale})`,
             opacity: opacity,
             zIndex: Math.floor(scale * 100)
           };

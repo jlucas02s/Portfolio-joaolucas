@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 
-import { TETROMINOS, randomTetromino } from '@/lib/tetris-helpers';
+import { TETROMINOS, randomTetromino, STAGE_WIDTH } from '@/lib/tetris-helpers';
 import type { Stage } from './use-tetris-stage';
 import { checkCollision } from '@/lib/tetris-helpers';
 
@@ -49,14 +49,14 @@ export const usePlayer = () => {
     const updatePlayerPos = ({ x, y, collided }: { x: number, y: number, collided: boolean }) => {
         setPlayer(prev => ({
             ...prev,
-            pos: { x: (prev.pos.x += x), y: (prev.pos.y += y) },
+            pos: { x: (prev.pos.x + x), y: (prev.pos.y + y) },
             collided,
         }))
     }
 
     const resetPlayer = useCallback(() => {
         setPlayer({
-            pos: { x: 4, y: 0 },
+            pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
             tetromino: randomTetromino().shape,
             collided: false,
         })

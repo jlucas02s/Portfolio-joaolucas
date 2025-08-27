@@ -7,36 +7,36 @@ import { Github, Instagram, Linkedin, MessageCircle } from 'lucide-react';
 
 const socialLinks = [
     {
-      name: "Personal Instagram",
+      name: "Instagram Pessoal",
       href: "https://www.instagram.com/joao_spc02/",
       icon: Instagram,
       preview: "https://picsum.photos/400/300?random=1",
       handle: "@joao_spc02",
-      dataAiHint: "social media profile"
+      dataAiHint: "Perfil Social"
     },
     {
-      name: "Business Instagram",
+      name: "Perfil empresarial",
       href: "https://www.instagram.com/essencia__digital/",
       icon: Instagram,
       preview: "/img/empresa.png",
       handle: "@essencia__digital",
-      dataAiHint: "business profile"
+      dataAiHint: "Perfil empresarial"
     },
     {
       name: "LinkedIn",
       href: "https://www.linkedin.com/in/jo%C3%A3o-lucas-silva-proen%C3%A7a-da-costa-6060261a0/",
       icon: Linkedin,
-      preview: "/img/linkedin.png",
+      preview: "/img/linkedin.jpeg",
       handle: "João Lucas S. P. da Costa",
-      dataAiHint: "professional network"
+      dataAiHint: "Network"
     },
     {
       name: "GitHub",
       href: "https://github.com/jlucas02s",
       icon: Github,
-      preview: "/img/github.png",
+      preview: "/./img/github.jpg",
       handle: "@jlucas02s",
-      dataAiHint: "code repository"
+      dataAiHint: "Repositório de código"
     },
     {
       name: "WhatsApp",
@@ -44,7 +44,7 @@ const socialLinks = [
       icon: MessageCircle,
       preview: "https://picsum.photos/400/300?random=5",
       handle: "Fale Comigo",
-      dataAiHint: "messaging app"
+      dataAiHint: "Contato"
     },
 ];
 

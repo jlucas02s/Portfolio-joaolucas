@@ -18,7 +18,7 @@ const socialLinks = [
       name: "Business Instagram",
       href: "https://www.instagram.com/essencia__digital/",
       icon: Instagram,
-      preview: "https://picsum.photos/400/300?random=2",
+      preview: "/img/empresa.png",
       handle: "@essencia__digital",
       dataAiHint: "business profile"
     },
@@ -26,7 +26,7 @@ const socialLinks = [
       name: "LinkedIn",
       href: "https://www.linkedin.com/in/jo%C3%A3o-lucas-silva-proen%C3%A7a-da-costa-6060261a0/",
       icon: Linkedin,
-      preview: "https://picsum.photos/400/300?random=3",
+      preview: "/img/linkedin.png",
       handle: "João Lucas S. P. da Costa",
       dataAiHint: "professional network"
     },
@@ -34,7 +34,7 @@ const socialLinks = [
       name: "GitHub",
       href: "https://github.com/jlucas02s",
       icon: Github,
-      preview: "https://picsum.photos/400/300?random=4",
+      preview: "/img/github.png",
       handle: "@jlucas02s",
       dataAiHint: "code repository"
     },
@@ -115,7 +115,7 @@ export const SocialOrbit = () => {
   if (!isClient) return null;
 
   const numIcons = socialLinks.length;
-  const radius = 350; 
+  const radius = 250; 
   const perspective = 1500;
 
   return (
@@ -137,7 +137,7 @@ export const SocialOrbit = () => {
           const opacity = (z + radius) / (2 * radius) * 0.8 + 0.2;
           
           const cardStyle = {
-            transform: `translateX(${x}px) translateY(${y}px) translateZ(${z}px) rotateY(${-currentAngle}rad) rotateY(${Math.PI}rad) scale(${scale})`,
+            transform: `translateX(${x}px) translateY(${y}px) translateZ(${z}px) rotateY(${-currentAngle + Math.PI}rad) scale(${scale})`,
             opacity: opacity,
             zIndex: Math.floor(scale * 100)
           };

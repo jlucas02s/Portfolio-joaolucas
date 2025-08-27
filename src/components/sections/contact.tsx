@@ -6,7 +6,7 @@ export const Contact = () => {
     <div className="w-full h-full flex flex-col items-center justify-center text-center">
       <h2 className="text-4xl md:text-6xl font-bold mb-4 text-primary">Conecte-se Comigo</h2>
       <p className="text-lg md:text-xl max-w-3xl mx-auto text-foreground/80 mb-12">
-        Vamos construir algo incrível juntos. Entre em contato através das minhas redes.
+        Vamos construir algo incrível juntos. Passe o mouse sobre os cards para interagir.
       </p>
       <SocialOrbit />
     </div>

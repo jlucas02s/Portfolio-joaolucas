@@ -1,16 +1,91 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 import { Github, Instagram, Linkedin, MessageCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const socialLinks = [
-  { name: "Personal Instagram", href: "https://www.instagram.com/joao_spc02/", icon: Instagram },
-  { name: "Business Instagram", href: "https://www.instagram.com/essencia__digital/", icon: Instagram },
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/jo%C3%A3o-lucas-silva-proen%C3%A7a-da-costa-6060261a0/", icon: Linkedin },
-  { name: "GitHub", href: "https://github.com/jlucas02s", icon: Github },
-  { name: "WhatsApp", href: "https://wa.me/qr/RZELMF7TOTQ5C1", icon: MessageCircle },
+    {
+      name: "Personal Instagram",
+      href: "https://www.instagram.com/joao_spc02/",
+      icon: Instagram,
+      preview: "https://picsum.photos/400/300?random=1",
+      handle: "@joao_spc02",
+      dataAiHint: "social media profile"
+    },
+    {
+      name: "Business Instagram",
+      href: "https://www.instagram.com/essencia__digital/",
+      icon: Instagram,
+      preview: "https://picsum.photos/400/300?random=2",
+      handle: "@essencia__digital",
+      dataAiHint: "business profile"
+    },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/jo%C3%A3o-lucas-silva-proen%C3%A7a-da-costa-6060261a0/",
+      icon: Linkedin,
+      preview: "https://picsum.photos/400/300?random=3",
+      handle: "João Lucas S. P. da Costa",
+      dataAiHint: "professional network"
+    },
+    {
+      name: "GitHub",
+      href: "https://github.com/jlucas02s",
+      icon: Github,
+      preview: "https://picsum.photos/400/300?random=4",
+      handle: "@jlucas02s",
+      dataAiHint: "code repository"
+    },
+    {
+      name: "WhatsApp",
+      href: "https://wa.me/qr/RZELMF7TOTQ5C1",
+      icon: MessageCircle,
+      preview: "https://picsum.photos/400/300?random=5",
+      handle: "Fale Comigo",
+      dataAiHint: "messaging app"
+    },
 ];
+
+const SocialCard = ({ link, style }: { link: typeof socialLinks[0], style: React.CSSProperties }) => {
+    const Icon = link.icon;
+    return (
+        <div style={style} className="group absolute top-1/2 left-1/2 w-80 h-[280px] -m-40 transition-all duration-300 ease-in-out">
+            <div className="relative w-full h-full rounded-2xl border border-primary/20 bg-card/50 p-4 transition-transform duration-300 ease-in-out group-hover:scale-110 shadow-lg">
+                <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-lg">
+                    <Image 
+                        src={link.preview} 
+                        alt={`Preview of ${link.name}`} 
+                        width={400}
+                        height={300}
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        data-ai-hint={link.dataAiHint}
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all" />
+                    <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="z-10"
+                    >
+                        <Button variant="default" size="lg">Visitar</Button>
+                    </a>
+                </div>
+                <div className="mt-4 flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary">
+                        <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                        <p className="font-semibold text-foreground">{link.name}</p>
+                        <p className="text-sm text-muted-foreground">{link.handle}</p>
+                    </div>
+                </div>
+            </div>
+      </div>
+    );
+};
+
 
 export const SocialOrbit = () => {
   const [isClient, setIsClient] = useState(false);
@@ -24,7 +99,7 @@ export const SocialOrbit = () => {
 
     const animate = () => {
       if (!isHovering.current) {
-        setAngle(prevAngle => prevAngle + 0.002);
+        setAngle(prevAngle => prevAngle + 0.001);
       }
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -34,55 +109,45 @@ export const SocialOrbit = () => {
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
-  const handleMouseEnter = () => {
-    isHovering.current = true;
-  };
-
-  const handleMouseLeave = () => {
-    isHovering.current = false;
-  };
+  const handleMouseEnter = () => { isHovering.current = true; };
+  const handleMouseLeave = () => { isHovering.current = false; };
   
-  if (!isClient) {
-    return null;
-  }
+  if (!isClient) return null;
 
   const numIcons = socialLinks.length;
-  const radius = 150; 
-  const perspective = 1000;
+  const radius = 400; 
+  const perspective = 1500;
 
   return (
     <div 
-        className="relative w-full h-80 flex items-center justify-center" 
+        className="relative w-full h-96 flex items-center justify-center" 
         style={{ perspective: `${perspective}px` }}
         ref={orbitRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
     >
-      <div className="relative w-full h-full" style={{ transformStyle: 'preserve-3d', transform: 'rotateX(-15deg)' }}>
+      <div className="relative w-full h-full" style={{ transformStyle: 'preserve-3d', transform: 'rotateX(-10deg) rotateY(0deg)' }}>
         {socialLinks.map((social, index) => {
           const currentAngle = angle + (index / numIcons) * 2 * Math.PI;
           const x = Math.cos(currentAngle) * radius;
           const z = Math.sin(currentAngle) * radius;
-          const scale = (z + radius) / (2 * radius) * 0.8 + 0.6;
-          const opacity = (z + radius) / (2 * radius) * 0.7 + 0.3;
-          const Icon = social.icon;
+          const y = Math.sin(currentAngle * 2) * 50; // Add some vertical movement
+          
+          const scale = (z + radius) / (2 * radius) * 0.7 + 0.5;
+          const opacity = (z + radius) / (2 * radius) * 0.8 + 0.2;
+          
+          const cardStyle = {
+            transform: `translateX(${x}px) translateY(${y}px) translateZ(${z}px) rotateY(${currentAngle + Math.PI/2}rad) scale(${scale})`,
+            opacity: opacity,
+            zIndex: Math.floor(scale * 100)
+          };
 
           return (
-            <a
+            <SocialCard
               key={social.name}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.name}
-              className="group absolute top-1/2 left-1/2 w-16 h-16 -m-8 rounded-full bg-primary/20 text-primary-foreground flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-primary hover:shadow-lg hover:!scale-125 hover:!opacity-100"
-              style={{
-                transform: `translateX(${x}px) translateZ(${z}px) scale(${scale})`,
-                opacity: opacity,
-                zIndex: Math.floor(scale * 100)
-              }}
-            >
-              <Icon className="w-8 h-8 text-primary group-hover:text-primary-foreground" />
-            </a>
+              link={social}
+              style={cardStyle}
+            />
           );
         })}
       </div>
